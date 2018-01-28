@@ -1,9 +1,9 @@
 <?php
 require_once '../../../autoload.php';
 
-$uri = 'http://hundert.scripts.local/schedule_organizer/www/?api=1';
-$accessKey = 'rDdKPRenFsgjQ5SNL53ejKUMCMCkB';
-$secretKey = '7pDVeNcM!xSDYdpbZTCzdxBm3&M?*g';
+$uri = '';
+$accessKey = '';
+$secretKey = '';
 
 $user = new \Appointmind\Appointment();
 $user->setUri($uri);
