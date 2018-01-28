@@ -64,6 +64,15 @@ class Request
     }
     
     /**
+     * Get access key
+     * @return string
+     */
+    public function getAccessKey()
+    {
+        return $this->accessKey;
+    }
+    
+    /**
      * Set secret key
      * @param string $key
      * @return \Appointmind\Request
@@ -72,6 +81,15 @@ class Request
     {
         $this->secretKey = $key;
         return $this;
+    }
+    
+    /**
+     * Get secret key
+     * @return string
+     */
+    public function getSecretKey()
+    {
+        return $this->secretKey;
     }
     
     /**
