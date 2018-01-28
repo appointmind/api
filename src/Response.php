@@ -20,6 +20,15 @@ class Response
     }
     
     /**
+     * Get raw response
+     * @return string
+     */
+    public function getRaw()
+    {
+        return $this->response->getBody();
+    }
+    
+    /**
      * Get JSON string
      * @return string
      */
