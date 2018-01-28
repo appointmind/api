@@ -6,6 +6,11 @@ namespace Appointmind;
  */
 class User extends Request
 {
+    /**
+     * Create user
+     * @param array $data
+     * @return \Appointmind\Response
+     */
     public function create($data = [])
     {
         $frame = new \stdClass;
@@ -13,24 +18,25 @@ class User extends Request
         $frame->id = "1";        
         $frame->method = 'createUser';
         $frame->params = new \stdClass;
-        $frame->params->firstName = $data['firstName'];
-        $frame->params->lastName = $data['lastName'];
-        $frame->params->email = $userData['email'];
-        $frame->params->password = $userData['password'];
+
+        if (isset($data['firstName'])) {
+            $frame->params->firstName = $data['firstName'];
+        }
+        
+        if (isset($data['lastName'])) {
+            $frame->params->lastName = $data['lastName'];
+        }
+        
+        if (isset($data['email'])) {
+            $frame->params->email = $data['email'];
+        }
+        
+        if (isset($data['password'])) {
+            $frame->params->password = $data['password'];
+        }
         $frame->params->userData = [];
         
-
-        $json = json_encode($frame);
-        
-        $signatureString = 'POST' . "\n" . md5($json) . "\n" . 'application/json' . "\n" . gmdate("Y-m-d H:i:s") . "\n";
-        
-        $headers = [
-            'Date: ' . gmdate('D, d M Y H:i:s \G\M\T'),
-            'Authorization: WOMS ' . $this->apiAccessKey . ':' . base64_encode(hash_hmac('sha256', $signatureString, $this->apiSecretKey)),
-            'Content-Type: application/json'
-        ];
-        
-        $this->setHeaders($headers);
+        $this->setObject($frame);
         return $this->send();
     }
 }
