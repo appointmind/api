@@ -13,9 +13,11 @@ $user = new User();
 $user->setUri($uri);
 $user->setAccessKey($accessKey);
 $user->setSecretKey($secretKey);
-$user->create([
+$result = $user->create([
     'firstName' => 'Abby',
     'lastName' => 'Normal',
     'email' => 'abby.normal@example.com',
     'password' => 'test',
 ]);
+
+print_r($result->getArray());
