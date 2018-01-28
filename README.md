@@ -27,11 +27,11 @@ Response
 
 ```json
 {
-	"result": {
-		"userId": "123456789"
-	},
-	"error": null,
-	"id": 1,
-	"jsonrpc": "2.0"
+    "result": {
+        "userId": "123456789"
+    },
+    "error": null,
+    "id": 1,
+    "jsonrpc": "2.0"
 }
 ```
