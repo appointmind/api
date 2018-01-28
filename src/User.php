@@ -31,6 +31,6 @@ class User extends Request
         ];
         
         $this->setHeaders($headers);
-        $response = $this->send();
+        return $this->send();
     }
 }
