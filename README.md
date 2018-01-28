@@ -1,5 +1,6 @@
 Getting started
 =
+Appointmind is an [online appointment scheduling](https://www.appointmind.com "Online Appointment Scheduling") service. **appointmind/api** is an API client, written in PHP and using Zend Framework components, that alllows you to create users and appointments, and login users via single sign-on.
 
 Features
 -
