@@ -93,7 +93,7 @@ class Request
     }
     
     /**
-     * Set json
+     * Set JSON
      * @param json $json
      * @return \Appointmind\Request
      */
@@ -101,6 +101,15 @@ class Request
     {
         $this->json = $json;
         return $this;
+    }
+    
+    /**
+     * Get JSON
+     * @return \Appointmind\json
+     */
+    public function getJson()
+    {
+        return $this->json;
     }
     
     /**
@@ -125,10 +134,49 @@ class Request
         return $this;
     }
     
+    /**
+     * Set headers
+     * @param unknown $headers
+     * @return \Appointmind\Request
+     */
     public function setHeaders($headers)
     {
-        $this->headers + $headers;
+        $headers = (array) $headers;        
+        $this->headers = array_merge($this->headers, $headers);
         return $this;
+    }
+    
+    /**
+     * Get headers
+     * @return array
+     */
+    public function getHeaders()
+    {
+        return $this->headers;
+    }
+    
+    /**
+     * Get Authorization headers
+     * @throws \Exception
+     * @return array
+     */
+    protected function getAuthorizationHeaders()
+    {
+        if (!$this->getAccessKey()) {
+            throw new \Exception('Missing access key');
+        }
+        
+        if (!$this->getSecretKey()) {
+            throw new \Exception('Missing secret key');
+        }        
+
+        $signatureString = 'POST' . "\n" . hash('sha256', $this->json) . "\n" . 'application/json' . "\n" . gmdate("Y-m-d H:i:s") . "\n";
+        
+        return [
+            'Date: ' . gmdate('D, d M Y H:i:s \G\M\T'),
+            'Authorization: WOMS ' . $this->getAccessKey() . ':' . base64_encode(hash_hmac('sha256', $signatureString, $this->getSecretKey())),
+            'Content-Type: application/json'
+        ];
     }
  
     /**
@@ -136,15 +184,16 @@ class Request
      * @return \Appointmind\Response
      */
     public function send()
-    {
+    {        
+        $this->setHeaders($this->getAuthorizationHeaders());
+        
         $client = new Client();
         $client->setUri($this->uri);
         $client->setMethod('POST');
         $client->setAdapter('Zend\Http\Client\Adapter\Curl');
         $client->setOptions($this->getOptions());
         $client->setRawBody($this->json);
-        $client->setHeaders($this->headers);
-        
+        $client->setHeaders($this->getHeaders());
         $response = $client->send();
         return new Response($response);
     }
@@ -153,7 +202,7 @@ class Request
      * Get options
      * @return array
      */
-    private function getOptions()
+    public function getOptions()
     {
         $options = [];
         $caPathOrFile = \Composer\CaBundle\CaBundle::getSystemCaRootBundlePath();
