@@ -1,0 +1,22 @@
+{
+	"name": "appointmind/api",
+	"description": "A library integrating the Appointmind API",
+    "keywords": ["appointment","scheduling", "booking"],
+    "homepage": "https://www.appointmind.com/",
+    "authors": [
+        {
+            "name": "Appointmind",
+            "homepage": "https://github.com/appointmind"
+        }
+    ],
+	"require": {
+		"php": ">=5.6",
+        "zendframework/zend-http": "^2.7",
+        "composer/ca-bundle": "*"
+	},
+	"autoload": {
+		"psr-4": {
+			"Appointmind\\": "src/"
+		}
+	}
+}
