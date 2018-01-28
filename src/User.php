@@ -8,11 +8,11 @@ class User extends Request
 {
     public function create($data = [])
     {
-        $frame = new stdClass;
+        $frame = new \stdClass;
         $frame->jsonrpc = '2.0';
         $frame->id = "1";        
         $frame->method = 'createUser';
-        $frame->params = new stdClass;
+        $frame->params = new \stdClass;
         $frame->params->firstName = $data['firstName'];
         $frame->params->lastName = $data['lastName'];
         $frame->params->email = $userData['email'];
