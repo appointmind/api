@@ -3,6 +3,7 @@
 	"description": "A library integrating the Appointmind API",
     "keywords": ["appointment","scheduling", "booking"],
     "homepage": "https://www.appointmind.com/",
+    "license": "MIT",
     "authors": [
         {
             "name": "Appointmind",
