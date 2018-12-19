@@ -51,12 +51,12 @@ Response
 
 ```json
 {
-	"result": {
-		"token": "2c3373ea2cf25743376fce78ef23383a651654b6802c965aa38ab5fd3b4863a3",
-		"url": "https://www.example.com/login/?token=2c3373ea2cf25743376fce78ef23383a651654b6802c965aa38ab5fd3b4863a3&singlesignon=1"
-	},
-	"error": null,
-	"id": 1,
-	"jsonrpc": "2.0"
+    "result": {
+	"token": "2c3373ea2cf25743376fce78ef23383a651654b6802c965aa38ab5fd3b4863a3",
+	"url": "https://www.example.com/login/?token=2c3373ea2cf25743376fce78ef23383a651654b6802c965aa38ab5fd3b4863a3&singlesignon=1"
+    },
+    "error": null,
+    "id": 1,
+    "jsonrpc": "2.0"
 }
 ```
