@@ -39,4 +39,26 @@ class User extends Request
         $this->setObject($frame);
         return $this->send();
     }
+    
+    /**
+     * Login user
+     * @param array $data
+     * @return \Appointmind\Response
+     */
+    public function login($email, $redirect = null)
+    {
+        $frame = new \stdClass;
+        $frame->jsonrpc = '2.0';
+        $frame->id = "1";        
+        $frame->method = 'loginToken';
+        $frame->params = new \stdClass;
+        $frame->params->email = $email;
+        
+        if (!empty($redirect)) {
+            $frame->params->redirect = $redirect;
+        }
+        
+        $this->setObject($frame);
+        return $this->send();
+    }
 }
