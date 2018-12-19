@@ -36,3 +36,27 @@ Response
     "jsonrpc": "2.0"
 }
 ```
+
+Login User
+-
+```php
+$user = new \Appointmind\User();
+$user->setUri('...');
+$user->setAccessKey('...');
+$user->setSecretKey('...');
+$result = $user->login('info@example.com', $redirect = 'https://www.example.com/redirect/');
+```
+
+Response
+
+```json
+{
+	"result": {
+		"token": "2c3373ea2cf25743376fce78ef23383a651654b6802c965aa38ab5fd3b4863a3",
+		"url": "https://www.example.com/login/?token=2c3373ea2cf25743376fce78ef23383a651654b6802c965aa38ab5fd3b4863a3&singlesignon=1"
+	},
+	"error": null,
+	"id": 1,
+	"jsonrpc": "2.0"
+}
+```
