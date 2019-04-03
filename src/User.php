@@ -34,7 +34,13 @@ class User extends Request
         if (isset($data['password'])) {
             $frame->params->password = $data['password'];
         }
-        $frame->params->userData = [];
+        
+        if (
+            isset($data['userData'])
+            and is_array($data['userData'])
+        ) {
+            $frame->params->userData = $data['userData'];
+        }
         
         $this->setObject($frame);
         return $this->send();
